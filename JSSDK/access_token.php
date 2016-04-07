@@ -1,2 +1,1 @@
-<?php exit();?>
-{"access_token":"","expire_time":0}
+<?php exit();?>{"access_token":"5mvrj-couSDTjWLqvA7ShtkSnXezZCVJycaBtaOR3y82iIxNhBU6qPDsGQ8bz-3yb5PTsslrFZpsEBf2FJHwTxzaOH_DS_sYoRi36IN2mH4MSRcADAFLK","expire_time":1460019119}

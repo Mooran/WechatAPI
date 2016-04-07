@@ -29,7 +29,7 @@
 			var code = $_GET['code'];
 			if (code){
 				$("#code").text(code);
-				$.getJSON('web-access-token.php',{'code':code},function(res){
+				$.getJSON('./api/web-access-token.php',{'code':code},function(res){
 					$("#openid").text(res.openid);
 				});
 			}else{

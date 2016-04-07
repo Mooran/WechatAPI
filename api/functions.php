@@ -1,7 +1,8 @@
 <?php
 
 function __autoload($classname){
-	$classpath="./".$classname.'.php';
+	$classname = str_replace("\\", "/", $classname);
+	$classpath= "../".$classname.'.php';
 	 if(file_exists($classpath)){
 	  require_once($classpath);
 	 }
@@ -9,16 +10,12 @@ function __autoload($classname){
 	  echo 'class file'.$classpath.'not found!';
 	 }
 }
+
 function getCurrentUrl(){
 	$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 	$current_url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	return $current_url;
 }
-
-// $jssdk = new JSSDK\jssdk("wx4dc3ead692baf638","4ab9048f380f805c08aee7aa6902d823");
-// $SignPackage = $jssdk->getSignPackage($url);
-
-// var_dump($SignPackage);
 
 function snsapiBaseAuthorize($appid,$appsecret){
 	$current_url = getCurrentUrl();
@@ -35,7 +32,6 @@ function snsapiBaseAuthorize($appid,$appsecret){
 
 }
 
-snsapi_base_authorize("wx4dc3ead692baf638","4ab9048f380f805c08aee7aa6902d823");
 
 function httpGet($url) {
     $curl = curl_init();
