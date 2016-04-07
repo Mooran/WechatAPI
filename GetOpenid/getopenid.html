@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Javascript Get Wechat OpenID</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+</head>
+<body>
+	Code:<span id="code"></span>
+	Openid:<span id="openid"></span>
+	<script>
+	(function ($){
+			var $_GET = (function(){
+			    var url = window.document.location.href.toString();
+			    var u = url.split("?");
+		    	if(typeof(u[1]) == "string"){
+		        	u = u[1].split("&");
+		        	var get = {};
+		        	for(var i in u){
+		            	var j = u[i].split("=");
+		            	get[j[0]] = j[1];
+		        	}
+		        	return get;
+		    	} else {
+		        	return {};
+		    	}
+			})();
+			var code = $_GET['code'];
+			if (code){
+				$("#code").text(code);
+				$.getJSON('web-access-token.php',{'code':code},function(res){
+					$("#openid").text(res.openid);
+				});
+			}else{
+				var url = window.document.location.href.toString();
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4dc3ead692baf638&redirect_uri=" + encodeURI(url ) + "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			}
+	})(jQuery);
+	</script>
+</body>
+</html>
